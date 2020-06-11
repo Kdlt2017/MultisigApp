@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+    database:
+        build: .
+        container_name: postgres_multisig
+        environment: 
+            - POSTGRES_PASSWORD_FILE=/run/secrets/db_pass
+        secrets:
+            - db_pass
+        ports:
+            - "3600:5432"
+
+secrets:
+    db_pass:
+        file: ./db_pass.txt
